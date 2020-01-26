@@ -1,0 +1,24 @@
+(function(){
+    const list = document.querySelectorAll('nav[role="navigation"]>div[role="list"]')[0].querySelectorAll('div[role="listitem"');
+    let path = '';
+    for (let i=0; i<list.length; i++) {
+        if (i === list.length - 1) {
+            if (list[i].firstChild.firstChild.innerHTML) {
+                path += list[i].firstChild.firstChild.innerHTML;
+            }
+        } else {
+            if (list[i].firstChild.innerHTML) {
+                path += list[i].firstChild.innerHTML;
+                path += '/';
+            }
+        }
+    }
+    const linkAndPath = window.location.href + "\n" + path;
+
+    function copyLinkAndPath(e) {
+        e.clipboardData.setData('text/plain', linkAndPath);
+        e.preventDefault();
+        document.removeEventListener("copy", copyLinkAndPath, false);
+    }
+    document.addEventListener('copy', copyLinkAndPath);
+})()
