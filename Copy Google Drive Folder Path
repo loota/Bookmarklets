@@ -1,3 +1,7 @@
+/*
+Usage: click the bookmarklet and press CTRL-C (or CMD-C). The link to the folder and the folder path will be copied to clipboard.
+Technical note: The script adds a listener to the copy event and after the first copy it removes the listener.
+*/
 (function(){
     const list = document.querySelectorAll('nav[role="navigation"]>div[role="list"]')[0].querySelectorAll('div[role="listitem"');
     let path = '';
