@@ -3,16 +3,17 @@ Usage: click the bookmarklet and press CTRL-C (or CMD-C). The link to the folder
 Technical note: The script adds a listener to the copy event and after the first copy it removes the listener.
 */
 (function(){
-    const list = document.querySelectorAll('nav[role="navigation"]>div[role="list"]')[0].querySelectorAll('div[role="listitem"');
+    const list = document.querySelectorAll('nav[role="navigation"]>div[role="list"]');
+    const listItems = list[list.length - 1].querySelectorAll('div[role="listitem"');
     let path = '';
-    for (let i=0; i<list.length; i++) {
-        if (i === list.length - 1) {
-            if (list[i].firstChild.firstChild.innerHTML) {
-                path += list[i].firstChild.firstChild.innerHTML;
+    for (let i=0; i<listItems.length; i++) {
+        if (i === listItems.length - 1) {
+            if (listItems[i].firstChild.firstChild.innerHTML) {
+                path += listItems[i].firstChild.firstChild.innerHTML;
             }
         } else {
-            if (list[i].firstChild.innerHTML) {
-                path += list[i].firstChild.innerHTML;
+            if (listItems[i].firstChild.innerHTML) {
+                path += listItems[i].firstChild.innerHTML;
                 path += '/';
             }
         }
@@ -25,4 +26,4 @@ Technical note: The script adds a listener to the copy event and after the first
         document.removeEventListener("copy", copyLinkAndPath, false);
     }
     document.addEventListener('copy', copyLinkAndPath);
-})()
+})();
