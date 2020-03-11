@@ -1,0 +1,1 @@
+javascript:const utterance = new SpeechSynthesisUtterance(prompt('Which word should I say?')); utterance.lang = prompt('In which language? (e.g. fr-FR)'); speechSynthesis.speak(utterance);
